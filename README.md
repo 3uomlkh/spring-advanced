@@ -11,11 +11,8 @@
    - 테스트 커버리지
 
 ## ✨ 테스트 커버리지 캡쳐
-### ManagerServiceTest
-![image](https://github.com/user-attachments/assets/980197b2-4dab-4577-9b8e-03853e00ab11)
+![image](https://github.com/user-attachments/assets/8774dedb-5bbb-4dfb-92d3-f939d5d06d56)
 
-### CommentServiceTest
-![image](https://github.com/user-attachments/assets/ae6973a3-afe6-416a-afd9-2d564cbb2759)
 
 ## 📆 기간
 2025-02-21 ~ 2025-02-27
