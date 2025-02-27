@@ -2,6 +2,8 @@ package org.example.expert.domain.manager.service;
 
 import org.example.expert.domain.common.dto.AuthUser;
 import org.example.expert.domain.common.exception.InvalidRequestException;
+import org.example.expert.domain.common.exception.InvalidTodoOwnerException;
+import org.example.expert.domain.common.exception.SelfAssignmentNotAllowedException;
 import org.example.expert.domain.manager.dto.request.ManagerSaveRequest;
 import org.example.expert.domain.manager.dto.response.ManagerResponse;
 import org.example.expert.domain.manager.dto.response.ManagerSaveResponse;
@@ -26,7 +28,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class ManagerServiceTest {
@@ -66,7 +69,7 @@ class ManagerServiceTest {
         given(todoRepository.findById(todoId)).willReturn(Optional.of(todo));
 
         // when & then
-        InvalidRequestException exception = assertThrows(InvalidRequestException.class, () ->
+        InvalidTodoOwnerException exception = assertThrows(InvalidTodoOwnerException.class, () ->
             managerService.saveManager(authUser, todoId, managerSaveRequest)
         );
 
@@ -140,7 +143,7 @@ class ManagerServiceTest {
         given(userRepository.findById(user.getId())).willReturn(Optional.of(user));
 
         // when & then
-        InvalidRequestException exception = assertThrows(InvalidRequestException.class, () ->
+        SelfAssignmentNotAllowedException exception = assertThrows(SelfAssignmentNotAllowedException.class, () ->
                 managerService.saveManager(authUser, todoId, managerSaveRequest)
         );
 
