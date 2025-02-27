@@ -29,6 +29,10 @@ public class TodoService {
     public TodoSaveResponse saveTodo(AuthUser authUser, TodoSaveRequest todoSaveRequest) {
         User user = User.fromAuthUser(authUser);
 
+        if (user == null) {
+            throw new InvalidRequestException("할 일을 생성하려면 유효한 사용자여야 합니다.");
+        }
+
         String weather = weatherClient.getTodayWeather();
 
         Todo newTodo = new Todo(
